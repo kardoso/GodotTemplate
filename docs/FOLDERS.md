@@ -2,89 +2,62 @@
 
 > **Observação:** Qualquer pasta pode ter subpastas dependendo da quantidade de arquivos e da lógica adotada pela equipe.
 
----
-
-## **assets/** — *Tudo relacionado à arte bruta do projeto (arquivos importados)*
-
 ```
-assets/
-    animations/         - animações criadas na Godot (.anim, .tres)
-
-    audio/              - sons do jogo
-        bgm/            - trilhas musicais e músicas de fundo
-        sfx/            - efeitos sonoros
-
-    fonts/              - fontes utilizadas no jogo
-
-    sprites/            - imagens de sprites 2D
-        characters/     - sprites de player, npcs e inimigos
-        effects/        - sprites para efeitos
-        ui/             - ícones, botões e elementos de interface
-
-    textures/           - texturas para uso geral, abstratas ou repetíveis
-
-    vfx/                - recursos específicos para efeitos visuais
-        particles/      - sistemas de partículas (materiais, configs)
-        shaders/        - shaders de efeitos
-        textures/       - texturas usadas em shaders/efeitos
+res://
+├── autoload/
+├── docs/
+├── entities/
+├── levels/
+├── shared/
+├── systems/
+└── ui/
 ```
 
 ---
 
-## **resources/** — *Prefabs e dados reutilizáveis (equivalente aos “prefabs” da Unity)*
+## Explicação detalhada
 
 ```
-resources/
-    characters/         - “prefabs” de personagens (com animação, estados, scripts)
-                            Ex: PlayerBase.tscn, Enemy1.tscn, Enemy2.tscn
+autoload/  
+	- sistemas globais carregados automaticamente (singletons)
+	- dados persistentes e gerenciadores centrais
+	- exemplos: GameState.gd, AudioManager.gd, Settings.gd
 
-    data/               - dados específicos ou de balanceamento
-                            Ex: EnemyStats.tres, DifficultyConfig.tres
+docs/  
+	- documentação interna do repositório
+	- arquivos como BRANCHES.md, COMMITS.md, FOLDERS.md e WORKFLOW.md
 
-    interactables/      - objetos interativos
-    
-    items/              - itens do jogo
-                            Ex: Carta.tscn
+entities/  
+	- objetos completos do jogo (player, inimigos, NPCs, itens, cartas, botões, etc.)
+	- cada entidade possui sua cena, script e assets específicos agrupados
+	- exemplo:
+		entities/card/
+			card.tscn
+			card.gd
+			sprites/
 
-    props/              - objetos de decoração ou utilidade simples
+levels/  
+	- fases e ambientes jogáveis
+	- cenas principais de cada fase e suas subpartes (salas, chunks, props do level)
 
-    templates/          - “prefabs base” usados como modelos para novos objetos
+shared/  
+	- recursos reutilizáveis em múltiplas partes do jogo
+	- sprites gerais, texturas, shaders, materiais, fonts, áudios comuns, vfx compartilhados
+	- exemplo:
+		shared/shaders/
+		shared/sprites/
+		shared/audio/
 
-    ui/                 - componentes reutilizáveis de UI
-                            Ex: BotaoAnimado.tscn
-```
+systems/  
+	- sistemas independentes que não são entidades nem UI
+	- lógica modular: save system, diálogo, inventário, combate, quests, pathfinding, etc.
+	- cada sistema agrupa scripts e arquivos relacionados
 
----
-
-## **scenes/** — *Cenas jogáveis do projeto*
-
-```
-scenes/
-    levels/             - fases/cenários jogáveis
-                            Ex: Level01.tscn, Level02.tscn, subscenes
-
-    main/               - cenas principais do jogo
-                            Ex: Menu.tscn, MainGame.tscn, SplashScreen.tscn
-
-    ui/                 - cenas de interface (HUD, menus, popups)
-                            Ex: PauseMenu.tscn, SettingsMenu.tscn, HUD.tscn
-```
-
----
-
-## **scripts/** — *Toda lógica de programação do projeto*
-
-```
-scripts/
-    autoload/           - scripts carregados globalmente (singletons)
-    
-    characters/         - scripts relacionados a personagens
-
-    core/               - sistemas essenciais, independentes de cena
-
-    gameplay/           - lógica específica das mecânicas
-
-    ui/                 - scripts exclusivos da interface
-
-    utils/              - scripts reutilizáveis, helpers, funções genéricas
+ui/  
+	- interfaces do jogo e elementos de apresentação
+	- HUD, menus, popups, pause, inventário visual, diálogos
+	- também inclui telas de apresentação:
+		- tela da logo do estúdio (splash)
+		- tela inicial (start screen)
+		- tela de loadings
 ```
